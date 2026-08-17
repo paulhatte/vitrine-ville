@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# vitrine-ville
 
-## Getting Started
+Site vitrine modèle pour communes, basé sur la maquette **Mairie de Vézac** (Périgord Noir).
 
-First, run the development server:
+Démo déployée sur [ville.rodium.fr](https://ville.rodium.fr).
+
+## Stack
+
+- **Next.js 16** (App Router, export statique)
+- **React 19** + TypeScript
+- Styles inline fidèles à la maquette HTML d'origine
+- Polices Google : Bricolage Grotesque, Instrument Sans
+
+## Pages
+
+| Route | Contenu |
+|-------|---------|
+| `/` | Accueil |
+| `/actualites` | Liste filtrable des actualités |
+| `/article` | Articles détaillés (ancres hash) |
+| `/agenda` | Agenda de l'été |
+| `/evenement` | Fiches événements |
+| `/vie-municipale` | Conseil, arrêtés, budget |
+| `/demarches` | Démarches administratives |
+| `/vezac-pratique` | Infos pratiques + réservation salle |
+| `/decouvrir` | Patrimoine et tourisme |
+| `/signalement` | Formulaire de signalement |
+| `/contact` | Coordonnées et pages légales |
+
+## Développement local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Régénérer depuis la maquette HTML
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Si une nouvelle version du bundle `.html` est fournie :
 
-## Learn More
+```bash
+python3 scripts/convert-maquette.py
+```
 
-To learn more about Next.js, take a look at the following resources:
+Puis adapter manuellement les pages interactives dans `src/components/pages/` si le contenu DC a changé.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Déploiement
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Le projet est configuré pour Vercel. Domaine cible : `ville.rodium.fr`.
 
-## Deploy on Vercel
+```bash
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+├── app/              # Routes Next.js
+├── components/       # Header, Footer, pages interactives
+├── content/html/     # HTML statique converti depuis la maquette
+├── data/             # Articles, événements
+└── lib/              # Routes, interactions DC, lecture HTML
+public/assets/        # Images extraites du bundle
+scripts/              # Conversion maquette → projet
+```
+
+## Crédits
+
+Maquette : commune de Vézac (démonstration Rodium).  
+Photos d'illustration : Wikimedia Commons (voir pied de page du site).

@@ -1,0 +1,37 @@
+{
+  "accueil": {
+    "route": "/",
+    "title": "Mairie de Vézac - Dordogne · Périgord Noir",
+    "description": "Site officiel de la mairie de Vézac (Dordogne, Périgord Noir) : démarches, actualités, agenda, vie municipale et informations pratiques.",
+    "ogImage": "/assets/blason.png",
+    "kind": "static"
+  },
+  "contact": {
+    "route": "/contact",
+    "title": "Contact & informations légales - Mairie de Vézac",
+    "description": "Contacter la mairie de Vézac : coordonnées, horaires, mentions légales, RGPD et accessibilité.",
+    "ogImage": "/assets/blason.png",
+    "kind": "static"
+  },
+  "decouvrir": {
+    "route": "/decouvrir",
+    "title": "Découvrir Vézac - Mairie de Vézac",
+    "description": "Découvrir Vézac, en Périgord Noir : les jardins de Marqueyssac, le belvédère et la vallée de la Dordogne.",
+    "ogImage": "/assets/blason.png",
+    "kind": "static"
+  },
+  "demarches": {
+    "route": "/demarches",
+    "title": "Démarches administratives - Mairie de Vézac",
+    "description": "Vos démarches administratives à Vézac : papiers, état civil, urbanisme, transports et aide aux démarches.",
+    "ogImage": "/assets/blason.png",
+    "kind": "static"
+  },
+  "agenda": {
+    "route": "/agenda",
+    "title": "Agenda - Mairie de Vézac",
+    "description": "L'agenda de Vézac : marchés, fêtes, concerts et séances du conseil municipal, de juillet à septembre.",
+    "ogImage": "/assets/blason.png",
+    "kind": "static"
+  }
+}
