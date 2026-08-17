@@ -29,8 +29,8 @@ export function validateContactForm(data: ContactFormData): ContactFormErrors {
     errors.email = "Adresse e-mail invalide.";
   }
 
-  if (!data.message || data.message.trim().length < 10) {
-    errors.message = "Message trop court (10 caractères minimum).";
+  if (!data.message || !data.message.trim()) {
+    errors.message = "Indiquez un message.";
   }
 
   if (!data.consent) {
