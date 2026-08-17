@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import { track } from "@vercel/analytics";
-import { getUtm } from "@/lib/utm";
+import { getContactUtm } from "@/lib/utm";
 import {
   EMPTY_CONTACT_FORM,
   validateContactForm,
@@ -69,8 +69,9 @@ export function RodiumContactForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
+          source: "vitrine_vezac",
           subject: "Contact depuis démo vitrine Vézac",
-          utm: getUtm(),
+          utm: getContactUtm(),
           pageUri: window.location.href,
         }),
       });
@@ -81,7 +82,7 @@ export function RodiumContactForm({
 
       track("rodium_contact_submit", {
         source: "vitrine_vezac",
-        campaign: getUtm().utm_campaign ?? "",
+        campaign: getContactUtm().utm_campaign ?? "",
       });
 
       setSubmitted(true);

@@ -91,3 +91,15 @@ export function getUtm(): UtmParams {
 export function hasUtm(params: UtmParams): boolean {
   return Boolean(params.utm_source || params.utm_campaign || params.utm_content);
 }
+
+/** UTM enrichis pour le formulaire contact Rodium sur la démo vitrine. */
+export function getContactUtm(): UtmParams {
+  const captured = getUtm();
+  return {
+    utm_source: captured.utm_source ?? "vitrine_vezac",
+    utm_medium: captured.utm_medium ?? "widget_contact",
+    utm_campaign: captured.utm_campaign ?? "demo_mairie_vezac",
+    ...(captured.utm_content ? { utm_content: captured.utm_content } : {}),
+    ...(captured.utm_term ? { utm_term: captured.utm_term } : {}),
+  };
+}

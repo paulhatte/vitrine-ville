@@ -35,6 +35,7 @@ export async function POST(request: Request) {
     subject:
       sanitizeText(body.subject, 200) ??
       "Contact depuis démo vitrine Vézac",
+    source: sanitizeText(body.source, 80) ?? "vitrine_vezac",
     utm:
       body.utm && typeof body.utm === "object"
         ? body.utm
