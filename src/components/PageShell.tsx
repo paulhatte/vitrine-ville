@@ -17,6 +17,9 @@ export function PageShell({ active, children }: PageShellProps) {
         flexDirection: "column",
         fontSize: "17px",
         lineHeight: 1.6,
+        width: "100%",
+        maxWidth: "100vw",
+        overflowX: "hidden",
       }}
     >
       <SiteHeader active={active} />
