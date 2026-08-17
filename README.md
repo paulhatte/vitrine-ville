@@ -71,6 +71,21 @@ https://vitrine-ville.vercel.app/?utm_source=merci_facteur&utm_medium=courrier&u
 
 Filtres utiles dans le dashboard Vercel : onglet **Events** → `utm_visit`, ou pages vues avec query string UTM.
 
+### Notification Slack (#rodium-bot)
+
+À chaque **premier atterrissage UTM** (scan QR / lien courrier), un message part dans le canal configuré via `SLACK_WEBHOOK_URL` :
+
+1. Créer ou réutiliser un **incoming webhook** Slack pointant vers `#rodium-bot`.
+2. Ajouter la variable sur Vercel (projet `vitrine-ville`) :
+
+```bash
+vercel env add SLACK_WEBHOOK_URL production
+```
+
+3. Redéployer : `vercel --prod --yes`
+
+Un seul ping par session navigateur (pas de spam à chaque page). Le message inclut campagne, `utm_content` (ex. `demo_labaroche`), page d'atterrissage et référent.
+
 
 ## Structure
 

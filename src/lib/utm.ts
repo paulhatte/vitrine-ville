@@ -12,8 +12,55 @@ const UTM_KEYS = [
 ] as const;
 
 const STORAGE_KEY = "vitrine-ville-utm";
+const SLACK_NOTIFIED_KEY = "vitrine-ville-utm-slack";
 
 export type UtmParams = Partial<Record<(typeof UTM_KEYS)[number], string>>;
+
+export function hasUtmInUrl(): boolean {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    return Boolean(params.get("utm_source"));
+  } catch {
+    return false;
+  }
+}
+
+export function wasUtmSlackNotified(): boolean {
+  try {
+    return sessionStorage.getItem(SLACK_NOTIFIED_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+export function markUtmSlackNotified(): void {
+  try {
+    sessionStorage.setItem(SLACK_NOTIFIED_KEY, "1");
+  } catch {
+    /* ignore */
+  }
+}
+
+/** Ping Slack une fois par session, uniquement à l'atterrissage UTM. */
+export async function notifyUtmVisitSlack(utm: UtmParams): Promise<void> {
+  if (!utm.utm_source || !hasUtmInUrl() || wasUtmSlackNotified()) return;
+
+  markUtmSlackNotified();
+
+  try {
+    await fetch("/api/utm-notify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...utm,
+        path: window.location.pathname,
+        referrer: document.referrer || "",
+      }),
+    });
+  } catch {
+    /* réseau : on ne bloque pas la visite */
+  }
+}
 
 export function captureUtm(): UtmParams {
   try {

@@ -3,7 +3,7 @@
 import { Analytics } from "@vercel/analytics/react";
 import { track } from "@vercel/analytics";
 import { useEffect } from "react";
-import { captureUtm, getUtm, hasUtm } from "@/lib/utm";
+import { captureUtm, getUtm, hasUtm, hasUtmInUrl, notifyUtmVisitSlack } from "@/lib/utm";
 
 /**
  * Mesure d'audience Vercel (sans cookie) + remontée explicite des UTM
@@ -23,6 +23,10 @@ export function SiteAnalytics() {
       content: utm.utm_content ?? "",
       term: utm.utm_term ?? "",
     });
+
+    if (hasUtmInUrl()) {
+      void notifyUtmVisitSlack(fromUrl);
+    }
   }, []);
 
   return <Analytics />;
