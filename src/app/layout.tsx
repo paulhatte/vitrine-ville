@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { RodiumContactWidget } from "@/components/RodiumContactWidget";
 import { SiteAnalytics } from "@/components/SiteAnalytics";
 import "./globals.css";
 
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         {children}
         <SiteAnalytics />
+        <RodiumContactWidget />
       </body>
     </html>
   );
