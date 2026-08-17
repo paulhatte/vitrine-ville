@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { SiteAnalytics } from "@/components/SiteAnalytics";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -29,7 +30,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="fr">
-      <body>{children}</body>
+      <body>
+        {children}
+        <SiteAnalytics />
+      </body>
     </html>
   );
 }

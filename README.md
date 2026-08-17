@@ -52,7 +52,25 @@ Le projet est configuré pour Vercel. Domaine cible : `ville.rodium.fr`.
 
 ```bash
 npm run build
+vercel --prod --yes
 ```
+
+## Analytics et UTM (campagnes courrier)
+
+Le site intègre **Vercel Web Analytics** (`@vercel/analytics`) : sans cookie, conforme RGPD.
+
+1. Activer **Web Analytics** dans [Vercel → vitrine-ville → Analytics](https://vercel.com/rodium/vitrine-ville/analytics) si ce n'est pas déjà fait.
+2. Les visites avec paramètres UTM déclenchent aussi un événement `utm_visit` (`source`, `medium`, `campaign`, `content`, `term`).
+3. Les UTM sont mémorisés en `sessionStorage` pour la session (voir `src/lib/utm.ts`).
+
+Exemple d'URL de test (convention Merci Facteur) :
+
+```
+https://vitrine-ville.vercel.app/?utm_source=merci_facteur&utm_medium=courrier&utm_campaign=prospection_vitrines_2026&utm_content=demo_labaroche&utm_term=68
+```
+
+Filtres utiles dans le dashboard Vercel : onglet **Events** → `utm_visit`, ou pages vues avec query string UTM.
+
 
 ## Structure
 
