@@ -107,22 +107,22 @@ export function RodiumContactWidget() {
           maxWidth: "min(320px, calc(100vw - 40px))",
         }}
       >
-        <span
+        <img
+          src="/assets/alain.webp"
+          alt=""
           aria-hidden="true"
+          width={36}
+          height={36}
           style={{
-            width: 28,
-            height: 28,
+            width: 36,
+            height: 36,
             borderRadius: "50%",
-            background: "rgba(255,255,255,0.35)",
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
+            objectFit: "cover",
             flexShrink: 0,
-            fontSize: 15,
+            border: "2px solid rgba(255,255,255,0.85)",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
           }}
-        >
-          ✉
-        </span>
+        />
         <span style={{ textAlign: "left", lineHeight: 1.25 }}>
           Un site comme celui-ci ?
           <span
