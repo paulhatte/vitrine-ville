@@ -13,7 +13,7 @@ export function RodiumContactWidget() {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const autoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const openModal = useCallback((source: "timer" | "fab") => {
+  const openModal = useCallback((source: "timer" | "fab" | "deeplink") => {
     if (autoTimerRef.current) {
       clearTimeout(autoTimerRef.current);
       autoTimerRef.current = null;
@@ -34,6 +34,20 @@ export function RodiumContactWidget() {
   }, []);
 
   useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("rodium") === "contact") {
+        openModal("deeplink");
+        params.delete("rodium");
+        const qs = params.toString();
+        const next = `${window.location.pathname}${qs ? `?${qs}` : ""}${window.location.hash}`;
+        window.history.replaceState({}, "", next);
+        return;
+      }
+    } catch {
+      /* ignore */
+    }
+
     try {
       if (sessionStorage.getItem(AUTO_DISMISSED_KEY) === "1") return;
     } catch {
